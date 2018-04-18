@@ -1,0 +1,49 @@
+body {min-width: 320px;max-width: 640px;margin: 0 auto;/*color: #333;*/padding: 0;font-family: "Microsoft Yahei";}
+			.container {width: 100%;border: 1px solid #ccc;}
+			.dao{margin:0 40px;}
+			.swiper1 {width: 100%;}
+			.swiper1 .selected {color: #ec5566;border-bottom: 2px solid #ec5566;}
+			.swiper1 .swiper-slide {font-size: 16px;height: 50px;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;cursor: pointer;}
+			.swiper2 {width: 100%;}
+			.swiper2 .swiper-slide {height: calc(100vh - 50px);color: black;box-sizing: border-box !important;overflow-x: hidden !important;}
+
+			/*index*/
+      .ban{width: 100%;height: 180px;}
+      .rule{width:100%;height:auto;}
+      .ruleText{width: 100%;height: 33px;font-size: 24px;/*background: rgb(229,183,232);*/color:rgb(245,4,75);padding:10px 10px;border-top: 2px solid rgb(245,4,75);border-bottom: 2px solid rgb(245,4,75);}
+      .signText{width:80%;height:30px;background:rgb(245,4,75);color:#fff;text-align: center; border-radius: 20px;font-size: 18px;line-height: 30px;margin:10px auto;}
+      .voteText{width:80%;height:50px;color:rgb(245,4,75);text-align: center; font-size: 18px; line-height: 50px;margin:10px auto;}
+      .actCon{width:80%;height:auto;font-size: 14px;margin:30px auto;padding: 10px;border:1px solid rgb(245,4,75);}
+      .P{margin-left:-35px;}
+      .prize{width:90%;height:auto;color:rgb(245,4,75);margin:10px auto;border:2px solid rgb(216, 78, 104);}
+      .prize-img{width:97%;height:200px;margin:10px auto;}
+      .a a{display: block;text-decoration: none;width:40%;}
+      .sign:hover{background:#fff;color:rgb(216, 78, 104);border:2px solid rgb(216, 78, 104);}
+      .vote:hover{ background:rgb(216, 78, 104);color:#fff; height:30px; border-radius:20px;
+  line-height:30px;}
+ul li{list-style: none;margin:20px auto;}
+ul li text{display: inline-block;}
+.other{width:80%;height: auto;text-align: center;margin:10px auto;}
+.other span{color:rgb(245,4,75);font-size: 10px;}
+
+/*baoming*/
+.T1{font-size: 24px;color:rgb(245,4,75);text-align: center;margin:10px auto;}
+.T2{font-size: 8px;color:rgb(216, 78, 104);text-align: center;}
+.T{width:100%;padding:10px auto;}
+.signForm{margin:10px 20px;}
+.signForm label{ float: left;}
+.uploadimg{z-index:10;display:block;width:30%;height: 25px;margin-top:-45px;margin-left:30%;text-align: center;padding:10px;color:rgb(245,4,75);}
+#file{/*z-index:1;*/opacity: 0;width: 100%;height: 50px;cursor:pointer;}
+.signForm input{width:100%;height:30px;line-height: 30px;border:1px solid #999;border-radius: 5px;padding-left: 8px;margin-top: 8px;}
+.btn{width:80%;height:30px;background:rgb(245,4,75);color:white;text-align: center;font-size: 15px;line-height: 30px;margin:25px auto;border-radius: 10px;cursor: pointer;border: none;margin-left:10%;}
+
+    #TouPiao{width:100%; height:auto; padding: 1px; }
+    #TouPiao span.myid{
+      display: hidden;
+    }
+    #TouPiao ul li{ width:80%;}
+    #TouPiao span{width:40px;display: inline-block;margin-right: 10px;}
+    #TouPiao .number{margin-right: -10px;}
+    #TouPiao img{ width:50px;height: 50px;background: #999;vertical-align: middle;margin-right: 20px; }
+    #TouPiao .pp{background: white;border-radius: 10px;padding: 3px 10px;}
+    .hr1{width:80%; height:2px;border-top: 2px dotted rgb(245,4,75);margin: 20px auto;}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>秀一秀活动</title>
+		<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />		
+		<script src="js/jquery.min.js"></script>
+		<!--<script src="//cdn.bootcss.com/Swiper/3.3.1/js/swiper.jquery.min.js"></script>-->
+		<script type="text/javascript" src="js/swiper-3.4.0.jquery.min.js" ></script>
+		<!--<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">-->
+		<link rel="stylesheet" href="css/swiper-3.2.7.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css">	
+	</head>
+	<body>
+		<div class="container">
+			<div class="swiper-container swiper1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide selected dao">秀一秀</div>
+					<div class="swiper-slide dao">报名</div>
+					<div class="swiper-slide dao">投票</div>
+				</div>
+			</div>
+			<!-- swiper2 -->
+			<div class="swiper-container swiper2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">				
+						<div style="width: 100%;height: 100%;">
+ 		 					<img src="images/banner1.jpg" class="ban"/>
+  							<div class="rule">
+        						<div class="T1">活动规则</div>
+        						<div class="T2">Activity Rules</div>
+    							<div class="actCon">
+     								<div>1、参赛者上传佩戴任意一款眼镜高清自拍照</div>
+      								<div>2、个人信息务必真实</div>
+      								<div>3、每位参赛者不限制投票</div>
+      								<div>4、仅限整个伊犁州报名参赛哦~</div>
+    							</div>
+        						<div class="signText">报名时间：2018/4/20-5/01</div>
+        						<div class="voteText">投票时间：2018/5/10-5/30</div>
+        						<hr class="hr1">
+  							</div>
+  							<div class="">
+    							<div class="T1">奖品分类</div>
+    							<div class="T2">Prize Digest</div>
+    							<div class="prize">
+      								<ul class="P">
+        								<li>
+         							 		<text>一等奖(1~10名)</text>
+          									<img src="images/jiang4.png" class="prize-img">
+        								</li>
+        								<li>
+          									<text>二等奖(11~50名)</text>
+          									<img src="images/jiang3.png" class="prize-img">
+        								</li>
+        								<li>
+         	 								<text>三等奖(51~100名)</text>
+          									<img src="images/jiang2.png" class="prize-img">
+        								</li>
+       	 								<li>
+          									<text>四等奖(参与奖)</text>
+          									<img src="images/jiang1.png" class="prize-img">
+        								</li>
+      								</ul>
+    							</div>
+  							</div>
+  						<div class="other">
+    						<span>特此说明：</span><hr class="hr1">
+    						<p>以上奖品可在指定门店当作5倍折扣抵扣券</p>
+    						<span>以上商品均以实体店为准</span><br>
+    						<span>投诉热线：15022880587</span>
+  						</div>
+					</div>
+				</div>
+				<div class="swiper-slide swiper-no-swiping" id="baoming">
+					<div class="con">
+  						<img src="images/banner1.jpg" class="ban"/>
+  						<div class="signUp">
+   			 				<div class="T1">活动报名</div>
+    						<div class="T2">Event Registration</div>
+   		 					<form class="T"  id="myForm" enctype="multipart/form-data" action="https://app.taobaomaichang.com/web/index.php?r=dao/upload" target="frame1" method="post">
+      							<div class="signForm">
+        							<label>姓名：</label>
+        							<input placeholder="请输入您的真实姓名" name="name" id="name"/>
+      							</div>
+      							<div class="signForm">
+        							<label>手机（通知领奖用）：</label>
+        							<input placeholder="请输入您的手机号" name="tel" id="tel"/>
+      							</div>
+      							<div class="signForm">
+        							<label>产品：</label>
+        							<input placeholder="请输入您购买的产品" name="pro" id="pro"/>
+      							</div>
+          						<input type="file" name="file" id="file">
+          						<span class="uploadimg">点击上传图片</span>
+          						<input type="submit" name="submit" value="提交"  id="btn"  class="btn">
+    						</form>
+     						<iframe name="frame1" frameborder="0" height="20" class="Iframe" style="display: none;">提交成功！</iframe>
+  						</div> 
+					</div>
+				</div>
+				<div class="swiper-slide swiper-no-swiping" id="toupiao">
+					<div align="center">
+						<img src="images/banner1.jpg" class="ban" />
+					</div>  
+            		<div  align="center">  
+              			<div class="T1">投票排行</div>  
+              			<hr class="hr1">
+              			<ul id="TouPiao">
+               				<!-- 后台返回数据放入这里 -->
+              			</ul>
+             		</div>            
+ 	        	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+            $.ajax({
+                url : "https://app.taobaomaichang.com/web/index.php?r=dao/all",
+                //后台请求的数据，用的是PHP
+                dataType : "json",//数据格式 
+                type : "get",//请求方式
+                async : false,//是否异步请求
+                crossDomain: true,
+                success : function(data) {   //如果请求成功，返回数据。
+                	var html = "";
+                	console.log(data);
+                	for(var i=0;i<data.length;i++){    //遍历data数组
+                        var ls = data[i]; 
+                        console.log(ls);  
+                        html +="<li><span class='myid' id='"+ls.id+"'>"+ls.id+"</span><span class='myname'>"+ls.name+"</span><img src='"+ls.url+"'/><button class='pp'>"+"投票"+"</button><span class='mynumber'>"+ls.number+"</span>"+"票"+"</li>";        
+                    }
+                    $("#TouPiao").html(html);//在html页面id=test的标签里显示html内容
+                    $(".pp").click(function () {
+                      	var nowdo=$(this);               
+                      	var nowvote = nowdo.parent().find(".mynumber").html();
+                      	nowdo.parent().find(".mynumber").html(parseInt(nowvote) + 1);
+                      	var aid=nowdo.parent().find(".myid").html();
+                      	var anumber=nowdo.parent().find(".mynumber").html();
+                      	// 将投票结果返回后台
+                        $.ajax({
+                          url : "http://s6tr4y.natappfree.cc/basic/web/index.php?r=dao/update",
+                          dataType : "json",//数据格式 
+                          type : "get",//请求方式
+                          async : false,//是否异步请求
+                          crossDomain: true,
+                          data:{"id":aid,"number":anumber},
+                          success:function(data){
+                            // console.log("保存成功！");
+                          },
+                           error:function(){                            
+                 			}
+                        })
+                    })
+                },
+                error:function(){
+                  console.log("访问失败");
+                }
+            })
+        })
+</script>
+<script>
+			$(function() {
+				function setCurrentSlide(ele, index) {
+					$(".swiper1 .swiper-slide").removeClass("selected");
+					ele.addClass("selected");
+					//swiper1.initialSlide=index;
+				}
+				var swiper1 = new Swiper('.swiper1', {
+//					设置slider容器能够同时显示的slides数量(carousel模式)。
+//					可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+//					loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+					slidesPerView: 5.5,
+					paginationClickable: true,//此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+					spaceBetween: 10,//slide之间的距离（单位px）。
+					freeMode: true,//默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+					loop: false,//是否可循环
+					onTab: function(swiper) {
+						var n = swiper1.clickedIndex;
+					}
+				});
+				swiper1.slides.each(function(index, val) {
+					var ele = $(this);
+					ele.on("click", function() {
+						setCurrentSlide(ele, index);
+						swiper2.slideTo(index, 500, false);
+						//mySwiper.initialSlide=index;
+					});
+				});
+
+				var swiper2 = new Swiper('.swiper2', {
+					//freeModeSticky  设置为true 滑动会自动贴合  
+					direction: 'horizontal',//Slides的滑动方向，可设置水平(horizontal)或垂直(vertical)。
+					loop: false,
+					//effect : 'fade',//淡入
+					//effect : 'cube',//方块
+					effect : 'coverflow',//3D流
+					//effect : 'flip',//3D翻转
+					autoHeight: true,//自动高度。设置为true时，wrapper和container会随着当前slide的高度而发生变化。
+					onSlideChangeEnd: function(swiper) {  //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+						var n = swiper.activeIndex;
+						setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
+						swiper1.slideTo(n, 500, false);
+					}
+				});
+			});
+			$("#btn").click(function(){
+				alert("保存成功！");
+			})
+		</script>
+	</body>
+</html>
