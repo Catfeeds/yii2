@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>象盟-美好生活</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--苹果手机全屏问题-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />        
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+		<meta content="telephone=no" name="format-detection" /> 
+		<link rel="stylesheet" href="css/swiper-3.4.0.min.css">
+		<link href="css/sweet-alert.css" rel="stylesheet" type="text/css">		
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+
+		<script src="js/jquery.min.js"></script>
+		
+	</head>
+
+	<body>
+		<div class="bottom">
+			<span><a href="index.html" class="selected" id="main"><img src="images/ba11.png"><p>首页</p></a></span>
+			<span><a href="#" id="VIP"><img src="images/ba2.png"><p>VIP</p></a></span>
+			<span><a href="#" id="car"><img src="images/ba3.png"><p>购物车</p></a></span>
+			<span><a href="#" id="my"><img src="images/ba4.png"><p>我的</p></a></span>
+		</div>
+		<div class="top">
+				<input type="input" name="search" placeholder="搜索商品关键词" class="sear" id="sear">
+				<input type="submit" name="submit" value="搜索" class="btn" onclick="search()">			
+			<div class="pulldown">
+				<ul class="pullCon">
+					
+				</ul>
+			</div>
+		</div>
+		<!-- 顶部搜索栏 -->
+	<div id="index">
+		
+		<!-- <hr class="line"> -->
+		<div class="swiper-container" id="page1">
+			<div class="w-top">
+					<p>本周推荐</p>
+					<span>全方位的生活指南，每天都有新乐趣。</span>
+				</div>
+			<div class="swiper-wrapper" id="list">
+
+				<!--1-->
+				<!-- <a href=""></a>
+				<div class="swiper-slide"  style="background-image:url('images/ban1.png')">
+				</div> -->
+				<div class="swiper-slide">
+					<a href="detail-list.html"><img src="images/ban1.png"></a>
+				</div>
+				<!--2-->
+				<!-- <div class="swiper-slide"  style="background-image:url('images/ban2.png')">	
+				</div> -->
+				<div class="swiper-slide">
+					<a href="detail.html?id=1"><img src="images/ban2.png"></a>
+				</div>
+				<!-- <div class="swiper-slide"  style="background-image:url('images/ban3.png')">	
+				</div> -->
+				<div class="swiper-slide">
+					<a href="detail.html?id=1"><img src="images/ban3.png"></a>
+				</div>
+				<!-- <div class="swiper-slide"  style="background-image:url('images/ban4.png')">	
+				</div> -->
+				<div class="swiper-slide">
+					<a href="detail.html?id=1"><img src="images/ban4.png"></a>
+				</div>
+			</div>
+		</div>
+		<!-- 内容部分 -->
+		
+		<div class="container">
+			<h3>宝宝健康</h3>
+			<ul>
+				<li>
+					<div class="con-img">
+						<a href="detail.html"><img src="images/img2.png"></a>
+					</div>
+					<div class="con-b">
+						<p>笑容时刻自信的秘密武器</p>
+						<span>ELEPHANT LEAGUE 牙线棒</span>
+					</div>
+				</li>
+				<li>
+					<div class="con-img">
+						<a href="detail.html"><img src="images/img1.png"></a>
+					</div>
+					<div class="con-b">
+						<p>这款包包，能搭配你所有的大衣</p>
+						<span>ELEPHANT LEAGUE 帆布包</span>
+					</div>
+				</li>
+				<li>
+					<div class="con-img">
+						<a href="detail.html"><img src="images/img3.png"></a>
+					</div>
+					<div class="con-b">
+						<p>少女感与女人味可以兼得</p>
+						<span>ELEPHANT LEAGUE 收纳包四件套</span>
+					</div>
+				</li>				
+			</ul>
+		</div>
+	</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper-3.4.0.jquery.min.js"></script>
+		<script src="js/sweet-alert.min.js"></script>
+		<script type="text/javascript">
+			// 该部分是首页象盟造物部分，商品信息的渲染；
+			$.ajax({
+				url:"https://app.taobaomaichang.com/index.php/api/lian/all",
+				dataType : "json",
+				 type : "get",
+				 async : false,
+				 crossDomain: true,
+				 success:function(data){
+				 	var conhtml="";
+				 	for(var i=0;i<data.length;i++){    //遍历data数组
+                        var lp = data[i]; 
+                        // console.log(ls);  
+                        conhtml +="<li><div class='con-img'><a href='detail.html?id="+lp.id+"'><img src='"+lp.url+"'></a></div><div class='con-b'><p>"+lp.t1+"</p><span>"+lp.t2+"</span></div></li>";        
+                    }
+                    $(".container ul").html(conhtml);
+				 },
+				 error:function(){
+				 	console.log("访问失败！");
+				 }
+			});
+		</script>
+		<script>
+			$(function() {							
+				function getSwiperOptions (pagination) {
+					return {
+						pagination: pagination,
+						effect: 'coverflow',
+						centeredSlides: true,
+						loop: true,
+						speed: 1000,
+						autoplay:3000,
+						autoplayDisableOnInteraction: false,
+						slidesPerView: 'auto',
+						coverflow: {
+							rotate: 0,
+							stretch: -55,
+							depth: 350,
+							modifier: 1,
+							slideShadows: false
+						}
+					}
+				}				
+				var swiper = [];
+				swiper['#page1'] = new Swiper('#page1', getSwiperOptions('#swiper-pagination1'));
+				
+				var tabhosts = $(".header a");  				  
+				tabhosts.each(function() {  				
+					$($(this).attr("href")).hide();  					  
+					if ($(this).hasClass("selected")) {  
+						$($(this).attr("href")).show();  
+					}  					  
+					$(this).click(function(event) {  
+						event.preventDefault();
+						  var id = $(this).attr("href");
+						  if(swiper.hasOwnProperty(id)){
+							  swiper[id].slideTo(0, 1000, false);
+							  swiper[id].stopAutoplay();
+							  swiper[id].startAutoplay();
+						  }						  
+						if (!$(this).hasClass("selected")) {  
+							tabhosts.each(function() {  
+								$(this).removeClass("selected");  
+								$($(this).attr("href")).hide();  
+							});  							  
+							$(this).addClass("selected");  
+							$($(this).attr("href")).show();  
+						}  
+					});  
+				});  
+			});  
+	   </script>
+	   <script type="text/javascript">
+	   	// 该部分是首页顶部的搜索框向数据库搜索，后台从表单中获取到input中的value值，自动返回相关信息
+	   	function search(){	
+	   		var con=$("#sear").val();		
+				$.ajax({
+					url:"https://app.taobaomaichang.com/index.php/api/lian/search",
+					type:"get",
+					 async : false,
+					contentType:"application/json;charset=UTF-8",				
+					data:{"search":con},
+					dataType:"json",
+					success:function(data){
+						var searHtml="";
+						for(var i=0;i<data.length;i++){
+							var lv=data[i];
+							searHtml+="<li><a href='detail.html?id="+lv.id+"'><span class='itemText'>"+lv.t1+"</span><span class='itemPrize'>"+lv.price+"</span><a></li>";
+						}
+						$(".pullCon").html(searHtml);
+					},
+					error:function(){
+						console.log("搜索失败")
+					}
+				});
+			}
+		
+	   </script>
+	</body>
+</html>
